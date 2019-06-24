@@ -1,0 +1,28 @@
+import { UPDATE_DISPLAY_VALUE } from "./types";
+
+export const updateDisplayValue = () => dispatch => {
+    console.log("action");
+    dispatch({
+        type: UPDATE_DISPLAY_VALUE,
+        payload: '{name:"era"}'
+    });
+};
+
+/*
+export function updateDisplayValue(value){
+    console.log("Hi updateDisplayValue");
+    return function(dispatch) {
+        dispatch({
+            type: UPDATE_DISPLAY_VALUE,
+            payload: value
+        });
+    }
+};*/
+
+/*
+export default function updateDisplayValue(value) {
+    return{
+        type: UPDATE_DISPLAY_VALUE,
+        payload: value
+    };
+}*/

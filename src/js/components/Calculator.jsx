@@ -2,30 +2,43 @@ import React, {Component} from 'react';
 import CalKeyBoard from './CalKeyBoard'
 import DisplayPanel from './DisplayPanel'
 
+import PropTypes from 'prop-types';
+import { connect } from "react-redux";
+import { updateDisplayValue } from '../../actions/calculatorActions';
+
 class Calculator extends Component {
 
-    state = {
-        calKeys:[
-            1,2,3,4,5,6,7,8,9,0
-        ],
-        displayValue:0,
-        prevVal:0,
-        signVal:''
+    /*componentWillMount() {
+        console.log("Hoo");
+        this.props.updateDisplayValue();
+    }*/
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            calKeys: [
+                1, 2, 3, 4, 5, 6, 7, 8, 9, 0
+            ],
+            displayValue: 0,
+            prevVal: 0,
+            signVal: ''
+        };
+
     }
 
     handleKey = (val) => {
         let displayVal = "" + this.state.displayValue;
         displayVal += val;
         this.setState({ displayValue:displayVal});
-    }
+    };
 
     handleCKey =() => {
         this.setState({displayValue:0})
-    }
+    };
 
     handleSignKey =(sign) =>{
         this.setState({prevVal: this.state.displayValue, displayValue:0, signVal:sign});
-    }
+    };
 
     handleEqualsKey= () =>{
 
@@ -45,9 +58,10 @@ class Calculator extends Component {
                 break;
             default:
                 break;
-        }
+        };
 
-        this.setState({displayValue: result})
+        this.props.updateDisplayValue() && this.props.updateDisplayValue();
+        //this.setState({displayValue: result})
     }
 
     render() {
@@ -65,4 +79,9 @@ class Calculator extends Component {
     }
 }
 
-export default Calculator;
+Calculator.propTypes = {
+    updateDisplayValue: PropTypes.func.isRequired
+};
+
+
+export default connect(null, { updateDisplayValue })(Calculator);

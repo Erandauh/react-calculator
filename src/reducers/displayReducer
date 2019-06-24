@@ -1,0 +1,27 @@
+import {UPDATE_DISPLAY_VALUE} from '../actions/types';
+
+const initialState = {
+    displayValue:0
+};
+
+export default function displayReducer(state = initialState, action) {
+    console.log('reducer');
+    switch (action.type) {
+        case UPDATE_DISPLAY_VALUE:
+            return {
+                ...state,
+                dv: action.payload
+            };
+
+        default:
+            return state;
+    }
+}
+
+
+/*
+export default function displayReducer(state = '', action){
+    return state;
+};
+
+*/
